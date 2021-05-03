@@ -19,4 +19,6 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+Route::middleware(['auth', 'isAdmin'])->group(function () {
+    Route::get('/dashboard', 'HomeController@index')->name('dashboard');
+});
