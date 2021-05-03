@@ -9,4 +9,19 @@ class Booking extends Model
     protected $fillable = [
         'name', 'status'
     ];
+
+    public function forms()
+    {
+        return $this->hasMany('App\Model\Form');
+    }
+
+    public function timeslots()
+    {
+        return $this->hasMany('App\Model\Timeslot');
+    }
+
+    public function excludes()
+    {
+        return $this->hasMany('App\Model\Exclude');
+    }
 }

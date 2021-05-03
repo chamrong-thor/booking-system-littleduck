@@ -9,4 +9,9 @@ class Form extends Model
     protected $fillable = [
         'booking_id', 'name', 'status'
     ];
+
+    public function booking()
+    {
+        return $this->belongsTo('App\Model\Booking');
+    }
 }

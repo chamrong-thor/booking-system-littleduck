@@ -10,3 +10,8 @@ class Option extends Model
         'type_id', 'name', 'sort', 'photo'
     ];
 }
+
+public function types()
+{
+    return $this->hasMany('App\Model\Type');
+}

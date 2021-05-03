@@ -11,4 +11,9 @@ class Timeslot extends Model
         'start_date',
         'end_date'
     ];
+
+    public function booking()
+    {
+        return $this->belongsTo('App\Model\Timeslot');
+    }
 }
