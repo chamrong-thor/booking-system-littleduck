@@ -14,12 +14,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('frontend.index');
 });
 
 Auth::routes();
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
-    Route::resource('/form', 'FormController');
+    Route::resource('/options', 'OptionController');
+    Route::resource('/types', 'TypeController');
+    Route::resource('/fields', 'FieldController');
+    Route::resource('/forms', 'FormController');
+    Route::resource('/timeslots', 'TimeslotController');
+    Route::resource('/excludes', 'ExcludeController');
+    Route::resource('/bookings', 'BookingController');
 });
