@@ -55,19 +55,66 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('form.create') }}" class="nav-link">
+                            <a href="{{ route('forms.create') }}" class="nav-link">
                                 <i class="fas fa-angle-double-right nav-icon"></i>
-                                <p>Add Forms</p>
+                                <p>Add Form</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('form.index') }}" class="nav-link">
+                            <a href="{{ route('forms.index') }}" class="nav-link">
                                 <i class="fas fa-angle-double-right nav-icon"></i>
                                 <p>Forms</p>
                             </a>
                         </li>
                     </ul>
                 </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-puzzle-piece"></i>
+                        <p>
+                            Fields
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('fields.create') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>Add Field</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('fields.index') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>Fields</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="#" class="nav-link">
+                        <i class="nav-icon fas fa-cog"></i>
+                        <p>
+                            Options
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{ route('options.create') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>Add Option</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('options.index') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>Options</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+
                 <li class="nav-header">Settings</li>
                 <li class="nav-item">
                     <a href="#" class="nav-link">

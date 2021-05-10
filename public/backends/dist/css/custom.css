@@ -1,5 +1,6 @@
+/* ============================== modified ============================*/
 body {
-    font-family: "Fira mono", sans-serif;
+    font-family: "Poppins", sans-serif;
 }
 
 [class*="sidebar-dark-"] {
@@ -53,7 +54,7 @@ body {
 }
 
 .content-wrapper {
-    background-color: #dadada;
+    background-color: #f6f6f6;
 }
 
 .za-text-light {
@@ -64,19 +65,22 @@ body {
     background-color: #e5e5e5 !important;
 }
 
-/* background color */
-.zh-bg-light {
-    background-color: #e5e5e5 !important;
-}
-/* text color */
-.zh-text-dark {
-    color: #1f2122 !important;
-}
+/* ===========================component======================== */
 
-.zh-text-gray {
-    color: #8d8d8d !important;
+/* text color */
+.za-text-dark {
+    color: #1f2122 !important;
 }
 
 .za-text-gray {
     color: #8d8d8d !important;
+}
+
+/* background color */
+.za-bg-light {
+    background-color: #f6f6f6 !important;
+}
+
+.za-bg-gray-light {
+    background-color: #f6f6f6 !important;
 }

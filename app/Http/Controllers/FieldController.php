@@ -13,17 +13,17 @@ class FieldController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.field.index');
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    * Show the form for creating a new resource.
+    *
+    * @return \Illuminate\Http\Response
+    */
     public function create()
     {
-        //
+        return view('backend.field.create');
     }
 
     /**

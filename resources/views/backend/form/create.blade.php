@@ -29,7 +29,7 @@ Create form
                 <!-- left column -->
                 <div class="col-md-12">
                     <!-- general form elements -->
-                    <div class="card zh-card-dark zh-text-dark">
+                    <div class="card zh-card-dark za-text-dark">
                         <div class="card-header">
                             <h3 class="card-title text-bold za-text-gray">FORM</h3>
                         </div>
@@ -39,12 +39,12 @@ Create form
                             <div class="card-body">
                                 <div class="form-group">
                                     <label for="exampleInputEmail1">Form Name</label>
-                                    <input type="email" class="form-control zh-bg-light" id="exampleInputEmail1"
+                                    <input type="email" class="form-control za-bg-light" id="exampleInputEmail1"
                                         placeholder="Enter form name">
                                 </div>
                                 <div class="form-group">
                                     <label for="exampleInputPassword1">Password</label>
-                                    <input type="password" class="form-control zh-bg-light" id="exampleInputPassword1"
+                                    <input type="password" class="form-control za-bg-light" id="exampleInputPassword1"
                                         placeholder="Password">
                                 </div>
                                 <div class="form-group">
