@@ -11,6 +11,8 @@
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Google Font: Poppins -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Google Font: Fira Mono -->
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Mono:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('backends/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Ionicons -->
@@ -91,7 +93,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('backends/dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="{{ asset('backends/dist/js/pages/dashboard.js') }}"></script>
+    {{-- <script src="{{ asset('backends/dist/js/pages/dashboard.js') }}"></script> --}}
 </body>
 
 </html>

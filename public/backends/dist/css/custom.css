@@ -1,23 +1,23 @@
 body {
-    font-family: "Poppins", sans-serif;
+    font-family: "Fira mono", sans-serif;
 }
 
 [class*="sidebar-dark-"] {
-    background-color: #3375b6;
+    background-color: #457a9c;
 }
 
 [class*="sidebar-dark-"] .nav-sidebar > .nav-item.menu-open > .nav-link,
 [class*="sidebar-dark-"] .nav-sidebar > .nav-item:hover > .nav-link,
 [class*="sidebar-dark-"] .nav-sidebar > .nav-item > .nav-link:focus {
-    background-color: rgb(63 250 233 / 32%);
+    background-color: #347ba7;
 }
 
 [class*="sidebar-dark-"] .sidebar a {
-    color: #f2f2f2;
+    color: #dee7eb;
 }
 
 [class*="sidebar-dark-"] .nav-header {
-    color: #ffffff;
+    color: #dee7eb;
     font-weight: 600;
 }
 
@@ -26,5 +26,57 @@ body {
 }
 
 [class*="sidebar-dark-"] .nav-treeview > .nav-item > .nav-link {
-    color: #fafafa;
+    color: #dee7eb;
+}
+
+.nav-tabs .nav-item.show .nav-link,
+.nav-tabs .nav-link.active {
+    color: #dee7eb;
+    background-color: #3375b6;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    color: #a7d6ff;
+}
+
+.text-cyan {
+    color: #3fffff !important;
+}
+
+.dropdown-item:hover {
+    background-color: #7dbeff;
+}
+
+.navbar-white-za {
+    background-color: #457a9c;
+    color: #ffffff;
+}
+
+.content-wrapper {
+    background-color: #dadada;
+}
+
+.za-text-light {
+    color: #e4dbd7 !important;
+}
+
+.zh-card-dark {
+    background-color: #e5e5e5 !important;
+}
+
+/* background color */
+.zh-bg-light {
+    background-color: #e5e5e5 !important;
+}
+/* text color */
+.zh-text-dark {
+    color: #1f2122 !important;
+}
+
+.zh-text-gray {
+    color: #8d8d8d !important;
+}
+
+.za-text-gray {
+    color: #8d8d8d !important;
 }

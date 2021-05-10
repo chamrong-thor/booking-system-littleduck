@@ -1,9 +1,9 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="font-size: 14px;">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="brand-link">
         <img src="{{ asset('backends/dist/img/booking.svg') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3" style="opacity: .8">
-        <span class="brand-text font-weight-light">{{ env('APP_NAME') }}</span>
+        <span class="brand-text font-weight-light text-bold">{{ env('APP_NAME') }}</span>
     </a>
 
     <!-- Sidebar -->
@@ -55,13 +55,13 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('form.create') }}" class="nav-link">
                                 <i class="fas fa-angle-double-right nav-icon"></i>
                                 <p>Add Forms</p>
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('form.index') }}" class="nav-link">
                                 <i class="fas fa-angle-double-right nav-icon"></i>
                                 <p>Forms</p>
                             </a>
