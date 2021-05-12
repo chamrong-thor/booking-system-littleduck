@@ -7,11 +7,16 @@ use Illuminate\Database\Eloquent\Model;
 class Option extends Model
 {
     protected $fillable = [
-        'type_id', 'name', 'sort', 'photo'
+        'type_id', 'name',
     ];
-}
 
-public function types()
-{
-    return $this->hasMany('App\Model\Type');
+    public function options()
+    {
+        return $this->hasMany('App\Model\Option');
+    }
+
+    public function optionvalues()
+    {
+            return $this->hasMany('App\Model\Optionvalue');
+    }
 }

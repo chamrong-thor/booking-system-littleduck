@@ -93,6 +93,7 @@
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('backends/dist/js/demo.js') }}"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    @yield('script')
 </body>
 
 </html>

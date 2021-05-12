@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Form;
+use App\Model\Type;
+use App\Model\Field;
 use Illuminate\Http\Request;
 
 class FieldController extends Controller
@@ -13,7 +16,8 @@ class FieldController extends Controller
      */
     public function index()
     {
-        return view('backend.field.index');
+        $fields = Field::paginate(5);
+        return view('backend.field.index', compact('fields'));
     }
 
     /**
@@ -23,7 +27,9 @@ class FieldController extends Controller
     */
     public function create()
     {
-        return view('backend.field.create');
+        $types = Type::all();
+        $forms = Form::all();
+        return view('backend.field.create', compact('types', 'forms'));
     }
 
     /**
@@ -34,7 +40,9 @@ class FieldController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $field = $request->all();
+        Field::create($field);
+        return redirect()->route('fields.index');
     }
 
     /**
@@ -56,7 +64,11 @@ class FieldController extends Controller
      */
     public function edit($id)
     {
-        //
+        $field = Field::findOrFail($id);
+        $forms = Form::all();
+        $types = Type::all();
+
+        return view('backend.field.edit', compact('field', 'forms', 'types'));
     }
 
     /**
@@ -68,7 +80,11 @@ class FieldController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $field = Field::findOrFail($id);
+        $input = $request->all();
+        $field->update($input);
+
+        return redirect()->route('fields.index');
     }
 
     /**
@@ -79,6 +95,9 @@ class FieldController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $field = Field::find($id);
+        $field->delete();
+        return response()->json(['success' => 'Record has been deleted!']);
     }
+
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Type extends Model
 {
     protected $fillable = [
-        'field_id', 'name'
+        'name'
     ];
 
     public function options()
@@ -15,8 +15,8 @@ class Type extends Model
         return $this->hasMany('App\Model\Option');
     }
 
-    public function field()
+    public function fields()
     {
-        return $this->belongsTo('App\Model\Field');
+        return $this->hasMany('App\Model\Type');
     }
 }

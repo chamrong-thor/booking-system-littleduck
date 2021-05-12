@@ -14,4 +14,9 @@ class Form extends Model
     {
         return $this->belongsTo('App\Model\Booking');
     }
+
+    public function fields()
+    {
+        return $this->hasMany('App\Model\Field');
+    }
 }

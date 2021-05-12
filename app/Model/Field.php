@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Field extends Model
 {
     protected $fillable = [
-        'form_id', 'name', 'help_text', 'placeholder', 'error_message', 'sort', 'status'
+        'form_id', 'type_id', 'name', 'help_text', 'placeholder', 'error_message', 'sort', 'required', 'status'
     ];
 
     public function form()
@@ -15,8 +15,8 @@ class Field extends Model
         return $this->belongsTo('App\Model\Form');
     }
 
-    public function types()
+    public function type()
     {
-        return $this->hasMany('App\Model\Type');
+        return $this->belongsTo('App\Model\Type');
     }
 }

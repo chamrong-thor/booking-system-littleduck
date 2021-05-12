@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Form;
+use App\Model\Booking;
 use Illuminate\Http\Request;
 
 class FormController extends Controller
@@ -13,7 +15,8 @@ class FormController extends Controller
      */
     public function index()
     {
-        return view('backend.form.index');
+        $forms = Form::paginate(5);
+        return view('backend.form.index', compact('forms'));
     }
 
     /**
@@ -23,7 +26,8 @@ class FormController extends Controller
      */
     public function create()
     {
-        return view('backend.form.create');
+        $bookings = Booking::all();
+        return view('backend.form.create', compact('bookings'));
     }
 
     /**
@@ -34,7 +38,9 @@ class FormController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $form = $request->all();
+        Form::create($form);
+        return redirect()->route('forms.index');
     }
 
     /**
@@ -56,7 +62,9 @@ class FormController extends Controller
      */
     public function edit($id)
     {
-        //
+        $form = Form::findOrFail($id);
+        $bookings = Booking::all();
+        return view('backend.form.edit', compact('form', 'bookings'));
     }
 
     /**
@@ -68,7 +76,10 @@ class FormController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $form = Form::find($id);
+        $data = $request->all();
+        $form->update($data);
+        return redirect()->route('forms.index');
     }
 
     /**
@@ -79,6 +90,8 @@ class FormController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $form = Form::find($id);
+        $form->delete();
+        return response()->json(['success' => 'Record has been deleted!']);
     }
 }

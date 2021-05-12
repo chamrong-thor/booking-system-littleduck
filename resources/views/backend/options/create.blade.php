@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 @section('title')
-Create Options
+Create Option
 @endsection
 
 @section('content')
@@ -25,7 +25,7 @@ Create Options
     </section>
 
     <!-- Main content -->
-    <form action="{{ route('options.store') }}" method="post">
+    <form action="{{ route('options.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <section class="content" style="font-size: 14px">
             <div class="container-fluid">
@@ -49,18 +49,22 @@ Create Options
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label id="inputName">Option Name</label>
-                                    <input type="text" name="name" id="inputName" class="form-control"
+                                    <label for="inputOptionName">Option Name</label>
+                                    <input type="text" name="option_name" id="inputOptionName" class="form-control"
                                         placeholder="Enter option name">
                                 </div>
                                 <div class="form-group">
-                                    <label>Type</label>
-                                    <select name="type" id="input-type" class="form-control">
-                                        <optgroup label="Choose">
-                                            <option value="select">Select</option>
-                                            <option value="radio">Radio</option>
-                                            <option value="checkbox" selected="selected">Checkbox</option>
-                                        </optgroup>
+                                    <label for="selectType">Type</label>
+                                    <select name="type_id" id="selectType" class="form-control">
+                                        @if (!empty($types))
+                                        <option selected disabled class="text-bold">Choose</option>
+                                        @foreach ($types as $type)
+                                        @if ($type->name == 'select' || $type->name == 'radio' || $type->name ==
+                                        'checkbox')
+                                        <option value="{{ $type->id }}"> {{ $type->name }}</option>
+                                        @endif
+                                        @endforeach
+                                        @endif
                                     </select>
                                 </div>
                             </div>
@@ -83,18 +87,23 @@ Create Options
                     <tbody>
                         <tr>
                             <th class="text-center" style="vertical-align: middle !important;">
-                                <input type="text" name="valueName" placeholder="Option Value Name"
+                                <input type="text" name="option_value_name" placeholder="Option Value Name"
                                     class="form-control">
                             </th>
                             <td style="vertical-align: middle !important; text-align: center">
-                                <img src="{{ asset('backends/dist/img/image-icon.png') }}"
-                                    style="border: 3px solid #00000014; max-width: 100px">
+                                <label for="uploadOptionValueImage" style="cursor: pointer;">
+                                    <img src="{{ asset('backends/dist/img/image-icon.png') }}"
+                                        style="border: 3px solid #00000014; max-width: 100px">
+                                </label>
+                                <input type="file" accept="image/*" name="option_value_image"
+                                    id="uploadOptionValueImage" style="display: none;" onchange="loadFile(event);">
                             </td>
                             <td>
-                                <textarea name="valueDescription" class="form-control" cols="30" rows="5"></textarea>
+                                <textarea name="option_value_description" class="form-control" cols="30"
+                                    rows="5"></textarea>
                             </td>
                             <td style="vertical-align: middle !important;">
-                                <input type="number" name="sort" class="form-control" id="valueSort">
+                                <input type="number" name="option_value_sort" class="form-control" id="valueSort">
                             </td>
                             <td class="text-center">
                                 <a href="#">
@@ -123,4 +132,13 @@ Create Options
     <!-- /.content -->
 </div>
 
+@endsection
+@section('script')
+<script>
+    var loadFile = function(event) {
+        var image = document.querySelector('label[for = "uploadOptionValueImage"] img');
+        image.src = URL.createObjectURL(event.target.files[0]);
+        console.log(image.src);
+}
+</script>
 @endsection

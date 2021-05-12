@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Type;
+use App\Model\Optionvalue;
+use App\Model\Option;
 use Illuminate\Http\Request;
 
 class OptionController extends Controller
@@ -23,7 +26,8 @@ class OptionController extends Controller
      */
     public function create()
     {
-        return view('backend.options.create');
+        $types = Type::all();
+        return view('backend.options.create', compact('types'));
     }
 
     /**
@@ -34,7 +38,30 @@ class OptionController extends Controller
      */
     public function store(Request $request)
     {
-        return $request->all();
+        // $request->validate([
+        //     'optionValueImage' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        // ]);
+
+        $input = $request;
+        $option = new Option;
+        $optionvalue = new Optionvalue;
+        $option->name = $input->option_name;
+        $option->type_id = $input->type_id;
+        $option->save();
+
+        $optionvalue->name = $input->option_value_name;
+        $optionvalue->sort = $input->option_value_sort;
+
+        if ($input->file('option_value_image')) {
+            $imagePath = $input->file('option_value_image');
+            $imageName = $imagePath->getClientOriginalName();
+            $path = $request->file('option_value_image')->storeAs('uploads', $imageName, 'public');
+        }
+
+        $optionvalue->image = '/storage/'.$path;
+        $optionvalue->save();
+
+        return redirect()->route('options.index');
     }
 
     /**

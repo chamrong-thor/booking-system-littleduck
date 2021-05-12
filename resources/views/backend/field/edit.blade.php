@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 @section('title')
-Create Field
+Edit Field
 @endsection
 
 @section('content')
@@ -25,8 +25,9 @@ Create Field
     </section>
 
     <!-- Main content -->
-    <form action="{{ route('fields.store') }}" method="post">
+    <form action="{{ route('fields.update', $field->id) }}" method="POST">
         @csrf
+        @method('PUT')
         <section class="content" style="font-size: 14px">
             <div class="container-fluid">
 
@@ -51,30 +52,39 @@ Create Field
                                 <div class="form-group">
                                     <label for="inputName">Field Name</label>
                                     <input type="text" name="name" id="inputName" class="form-control"
-                                        placeholder="Field Name">
+                                        placeholder="Field Name" value="{{ $field->name }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputHelpText">Help Text</label>
                                     <input type="text" name="help_text" id="inputHelpText" class="form-control"
-                                        placeholder="Help Text">
+                                        placeholder="Help Text" value="{{ $field->help_text }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPlaceholder">Placeholder</label>
                                     <input type="text" name="placeholder" id="inputPlaceholder" class="form-control"
-                                        placeholder="Placeholder">
+                                        placeholder="Placeholder" value="{{ $field->placeholder }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputErrorMessage">Error Message</label>
                                     <input type="text" name="error_message" id="inputErrorMessage" class="form-control"
-                                        placeholder="Error Message">
+                                        placeholder="Error Message" value="{{ $field->error_message }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="selectForm">Form</label>
-                                    <select name="required" class="form-control" id="selectForm">
-                                        <option selected disabled>Select</option>
-                                        @if ($forms)
+                                    <select name="form_id" class="form-control" id="selectForm">
+                                        <option disabled>Select</option>
+                                        @if (!empty($field->form->id) && !empty($forms))
                                         @foreach ($forms as $form)
-                                        <option value="{{ $form->id }}">{{ $form->name }}</option>
+                                        <option value="{{ $form->id }}"
+                                            {{ $form->id == $field->form->id ? 'selected' : '' }}>{{ $form->name }}
+                                        </option>
+                                        @endforeach
+                                        @endif
+
+                                        @if (!empty($forms))
+                                        @foreach ($forms as $form)
+                                        <option value="{{ $form->id }}">{{ $form->name }}
+                                        </option>
                                         @endforeach
                                         @endif
                                     </select>
@@ -85,17 +95,28 @@ Create Field
                                     <label for="selectRequired">Required</label>
                                     <select name="required" class="form-control" id="selectRequired">
                                         <option selected disabled>Select</option>
-                                        <option value="1">Yes</option>
-                                        <option value="0">No</option>
+                                        <option {{ $field->required == 1 ? 'value = 1 selected' : 'value = 1' }}>
+                                            Yes
+                                        </option>
+                                        <option {{ $field->required == 0 ? 'value = 0 selected' : 'value = 0 ' }}>No
+                                        </option>
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="selectInputType">Type</label>
                                     <select name="type_id" id="selectInputType" class="form-control">
-                                        @if (!empty($types))
-                                        <Option selected disabled class="text-bold">Choose</Option>
+                                        @if (!empty($types) && !empty($field->type->id))
+                                        <option disabled class="text-bold">Choose</option>
                                         @foreach ($types as $type)
-                                        <option value="{{ $type->id }}">{{ $type->name }}</option>
+                                        <option value="{{ $type->id }}"
+                                            {{ $type->id == $field->type->id ? 'selected' : '' }}>{{ $type->name }}
+                                        </option>
+                                        @endforeach
+                                        @else
+                                        <option disabled selected class="text-bold">Choose</option>
+                                        @foreach ($types as $type)
+                                        <option value="{{ $type->id }}">{{ $type->name }}
+                                        </option>
                                         @endforeach
                                         @endif
                                     </select>
@@ -103,15 +124,17 @@ Create Field
                                 <div class="form-group">
                                     <label for="inputSort">Sort</label>
                                     <input type="number" name="sort" id="inputSort" class="form-control"
-                                        placeholder="Sort">
+                                        placeholder="Sort" value="{{ $field->sort }}">
                                     </select>
                                 </div>
                                 <div class="form-group">
                                     <label for="selectStatus">Status</label>
                                     <select name="status" class="form-control" id="selectStatus">
                                         <option selected disabled>Select</option>
-                                        <option value="1">Enable</option>
-                                        <option value="0">Disable</option>
+                                        <option {{ $field->status == 1 ? 'value = 1 selected' : 'value = 1' }}
+                                            value="1">Enable</option>
+                                        <option {{ $field->status == 0 ? 'value = 0 selected' : 'value = 0 ' }}>
+                                            Disable</option>
                                     </select>
                                 </div>
                             </div>

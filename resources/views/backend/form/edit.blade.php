@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 @section('title')
-Create Form
+Edit Form
 @endsection
 
 @section('content')
@@ -25,15 +25,16 @@ Create Form
     </section>
 
     <!-- Main content -->
-    <form action="{{ route('forms.store') }}" method="post">
+    <form action="{{ route('forms.update', $form->id) }}" method="POST">
         @csrf
+        @method('PUT')
         <section class="content" style="font-size: 14px">
             <div class="container-fluid">
 
                 <!-- SELECT2 EXAMPLE -->
                 <div class="card card-default">
                     <div class="card-header">
-                        <h3 class="card-title"><i class="fas fa-copy"></i> Forms</h3>
+                        <h3 class="card-title"><i class="fas fa-puzzle-piece"></i> Forms</h3>
 
                         <div class="card-tools">
                             <button type="submit" class="btn btn-tool bg-primary" title="Save">
@@ -51,17 +52,28 @@ Create Form
                                 <div class="form-group">
                                     <label for="inputName">Form Name</label>
                                     <input type="text" name="name" id="inputName" class="form-control"
-                                        placeholder="Field Name">
+                                        placeholder="Field Name" value="{{ $form->name }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="selectBooking">Booking</label>
                                     <select name="booking_id" class="form-control" id="selectBooking">
-                                        <option selected disabled>Select</option>
-                                        @if (!empty($bookings))
+                                        @if(!empty($form) && !empty($form->booking->id))
+                                        <option disabled>Select</option>
                                         @foreach ($bookings as $booking)
-                                        <option value="{{ $booking->id }}">{{ $booking->name }}</option>
+                                        <option value="{{$booking->id}}"
+                                            {{ $booking->id == ($form->booking->id)? 'selected' : '' }}>
+                                            {{ $booking->name }}</option>
                                         @endforeach
                                         @endif
+
+                                        @if(!empty($form) && empty($form->booking->id))
+                                        <option selected disabled>Select</option>
+                                        @foreach ($bookings as $booking)
+                                        <option value="{{$booking->id}}">
+                                            {{ $booking->name }}</option>
+                                        @endforeach
+                                        @endif
+
                                     </select>
                                 </div>
                             </div>
@@ -69,9 +81,11 @@ Create Form
                                 <div class="form-group">
                                     <label for="selectStatus">Status</label>
                                     <select name="status" class="form-control" id="selectStatus">
-                                        <option selected disabled>Select</option>
-                                        <option value="1">Enable</option>
-                                        <option value="0">Disable</option>
+                                        @if(!empty($form))
+                                        <option disabled>Select</option>
+                                        <option value="1" {{ $form->status == 1 ? 'selected' : '' }}>Enable</option>
+                                        <option value="0" {{ $form->status == 0 ? 'selected' : '' }}>Disable</option>
+                                        @endif
                                     </select>
                                 </div>
                             </div>
