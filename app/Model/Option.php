@@ -19,4 +19,9 @@ class Option extends Model
     {
             return $this->hasMany('App\Model\Optionvalue');
     }
+
+    public function type()
+    {
+        return $this->belongsTo('App\Model\Type');
+    }
 }

@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Model\Type;
-use App\Model\Optionvalue;
 use App\Model\Option;
+use App\Model\Optionvalue;
 use Illuminate\Http\Request;
 
-class OptionController extends Controller
+class OptionvalueController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,9 @@ class OptionController extends Controller
      */
     public function index()
     {
-        $options = Option::paginate(5);
-        return view('backend.options.index', compact('options'));
+        $optionvalues = Optionvalue::paginate(5);
+        $options = Option::all();
+        return view('backend.optionvalues.index', compact('optionvalues', 'options'));
     }
 
     /**
@@ -27,8 +27,7 @@ class OptionController extends Controller
      */
     public function create()
     {
-        $types = Type::all();
-        return view('backend.options.create', compact('types'));
+        return view('backend.optionvalues.create');
     }
 
     /**
@@ -40,10 +39,9 @@ class OptionController extends Controller
     public function store(Request $request)
     {
         $input = $request->all();
+        Optionvalue::create($input);
 
-        Option::create($input);
-
-        return redirect()->route('options.index');
+        return back();
     }
 
     /**
@@ -65,10 +63,10 @@ class OptionController extends Controller
      */
     public function edit($id)
     {
-        $option = Option::findOrFail($id);
-        $types = Type::all();
-
-        return view('backend.options.edit', compact('types', 'option'));
+        $optionvalues = Optionvalue::paginate(5);
+        $options = Option::all();
+        $optionValue = Optionvalue::findOrFail($id);
+        return view('backend.optionvalues.edit', compact('optionvalues', 'options', 'optionValue'));
     }
 
     /**
@@ -81,10 +79,11 @@ class OptionController extends Controller
     public function update(Request $request, $id)
     {
         $input = $request->all();
-        $option = Option::find($id);
-        $option->update($input);
+        $optionvalue = Optionvalue::find($id);
+        $optionvalue->update($input);
 
-        return redirect()->route('options.index');
+        return redirect()->route('optionvalues.index');
+
     }
 
     /**
@@ -95,11 +94,9 @@ class OptionController extends Controller
      */
     public function destroy($id)
     {
-        $option = Option::find($id);
-        $option->delete();
-
-        $optionvalue = Optionvalue::where('option_id', $id);
+        $optionvalue = Optionvalue::find($id);
         $optionvalue->delete();
+
         return response()->json(['success' => 'Record has been deleted!']);
     }
 }

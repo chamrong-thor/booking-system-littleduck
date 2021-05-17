@@ -81,7 +81,7 @@ Edit Field
                                         @endforeach
                                         @endif
 
-                                        @if (!empty($forms))
+                                        @if (empty($field->form->id) && !empty($forms))
                                         @foreach ($forms as $form)
                                         <option value="{{ $form->id }}">{{ $form->name }}
                                         </option>

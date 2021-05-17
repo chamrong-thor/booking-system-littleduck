@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 @section('title')
-Create Option
+Edit Option
 @endsection
 
 @section('content')
@@ -25,8 +25,9 @@ Create Option
     </section>
 
     <!-- Main content -->
-    <form action="{{ route('options.store') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ route('options.update', $option->id) }}" method="post" enctype="multipart/form-data">
         @csrf
+        @method('PUT')
         <section class="content" style="font-size: 14px">
             <div class="container-fluid">
 
@@ -51,7 +52,7 @@ Create Option
                                 <div class="form-group">
                                     <label for="inputOptionName">Option Name</label>
                                     <input type="text" name="name" id="inputOptionName" class="form-control"
-                                        placeholder="Enter option name">
+                                        placeholder="Enter option name" value="{{ $option->name }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="selectType">Type</label>
@@ -61,7 +62,9 @@ Create Option
                                         @foreach ($types as $type)
                                         @if ($type->name == 'select' || $type->name == 'radio' || $type->name ==
                                         'checkbox')
-                                        <option value="{{ $type->id }}"> {{ $type->name }}</option>
+                                        <option value="{{ $type->id }}"
+                                            {{ $type->id == $option->type->id ? 'selected' : '' }}>
+                                            {{ $type->name }}</option>
                                         @endif
                                         @endforeach
                                         @endif

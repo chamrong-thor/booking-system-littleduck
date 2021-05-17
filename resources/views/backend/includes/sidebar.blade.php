@@ -112,6 +112,12 @@
                                 <p>Options</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('optionvalues.index') }}" class="nav-link">
+                                <i class="fas fa-angle-double-right nav-icon"></i>
+                                <p>Option Value</p>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 

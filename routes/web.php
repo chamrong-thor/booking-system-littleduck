@@ -15,13 +15,14 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('frontend.index');
-});
+})->name('homepage');
 
 Auth::routes();
 
 Route::middleware(['auth', 'isAdmin'])->group(function () {
     Route::get('/dashboard', 'HomeController@index')->name('dashboard');
     Route::resource('/options', 'OptionController');
+    Route::resource('/optionvalues', 'OptionvalueController');
     Route::resource('/fields', 'FieldController');
     Route::resource('/forms', 'FormController');
     Route::resource('/timeslots', 'TimeslotController');

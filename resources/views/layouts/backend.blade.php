@@ -34,6 +34,11 @@
     <link rel="stylesheet" href="{{ asset('backends/dist/css/custom.css') }}">
     <!-- summernote -->
     <link rel="stylesheet" href="{{ asset('backends/plugins/summernote/summernote-bs4.min.css') }}">
+    <!-- file manager-->
+    <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
+
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -92,7 +97,8 @@
     <script src="{{ asset('backends/dist/js/adminlte.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('backends/dist/js/demo.js') }}"></script>
-    <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
+    <!-- filemanger -->
+    <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
     @yield('script')
 </body>
 
