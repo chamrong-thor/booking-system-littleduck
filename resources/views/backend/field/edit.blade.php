@@ -72,8 +72,8 @@ Edit Field
                                 <div class="form-group">
                                     <label for="selectForm">Form</label>
                                     <select name="form_id" class="form-control" id="selectForm">
-                                        <option disabled>Select</option>
                                         @if (!empty($field->form->id) && !empty($forms))
+                                        <option disabled>Choose</option>
                                         @foreach ($forms as $form)
                                         <option value="{{ $form->id }}"
                                             {{ $form->id == $field->form->id ? 'selected' : '' }}>{{ $form->name }}
@@ -82,6 +82,7 @@ Edit Field
                                         @endif
 
                                         @if (empty($field->form->id) && !empty($forms))
+                                        <option disabled selected>Choose</option>
                                         @foreach ($forms as $form)
                                         <option value="{{ $form->id }}">{{ $form->name }}
                                         </option>

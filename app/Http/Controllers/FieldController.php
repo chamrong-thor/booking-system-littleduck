@@ -6,6 +6,7 @@ use App\Model\Form;
 use App\Model\Type;
 use App\Model\Field;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FieldController extends Controller
 {
@@ -96,6 +97,14 @@ class FieldController extends Controller
     public function destroy($id)
     {
         $field = Field::find($id);
+        $optionvalues = DB::table('optionvalues')->where('field_id', '=', $id)->get();
+
+        if(!empty($optionvalues)) {
+            foreach ($optionvalues as $optionvalue) {
+                $optionvalue->field_id = null;
+            }
+        }
+
         $field->delete();
         return response()->json(['success' => 'Record has been deleted!']);
     }

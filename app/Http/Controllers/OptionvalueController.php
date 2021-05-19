@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Field;
 use App\Model\Option;
 use App\Model\Optionvalue;
 use Illuminate\Http\Request;
@@ -16,8 +17,9 @@ class OptionvalueController extends Controller
     public function index()
     {
         $optionvalues = Optionvalue::paginate(5);
-        $options = Option::all();
-        return view('backend.optionvalues.index', compact('optionvalues', 'options'));
+        $fields = Field::all();
+
+        return view('backend.optionvalues.index', compact('optionvalues', 'fields'));
     }
 
     /**
@@ -63,10 +65,13 @@ class OptionvalueController extends Controller
      */
     public function edit($id)
     {
-        $optionvalues = Optionvalue::paginate(5);
-        $options = Option::all();
         $optionValue = Optionvalue::findOrFail($id);
-        return view('backend.optionvalues.edit', compact('optionvalues', 'options', 'optionValue'));
+        $fields = Field::all();
+
+        // $optionvalueField = $optionValue->field;
+        // dd($optionValue->field->name);
+
+        return view('backend.optionvalues.edit', compact('optionValue', 'fields'));
     }
 
     /**

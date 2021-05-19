@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Optionvalue extends Model
 {
     protected $fillable = [
-        'option_id', 'name', 'image', 'description', 'sort'
+        'field_id', 'name', 'image', 'description', 'sort'
     ];
 
-    public function option()
+    public function field()
     {
-        return $this->belongsTo('App\Model\Option');
+        return $this->belongsTo('App\Model\Field');
     }
 }

@@ -10,13 +10,8 @@ class Type extends Model
         'name'
     ];
 
-    public function options()
-    {
-        return $this->hasMany('App\Model\Option');
-    }
-
     public function fields()
     {
-        return $this->hasMany('App\Model\Type');
+        return $this->hasMany('App\Model\Field');
     }
 }

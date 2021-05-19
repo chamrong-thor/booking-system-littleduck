@@ -79,7 +79,7 @@ class FormController extends Controller
         $form = Form::find($id);
         $data = $request->all();
         $form->update($data);
-        return redirect()->route('forms.index');
+        return redirect()->route('forms.index')->with('success', 'Form created successfully');
     }
 
     /**

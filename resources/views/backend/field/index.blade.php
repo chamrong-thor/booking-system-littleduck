@@ -31,10 +31,6 @@ Fields
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fas fa-list"></i> Fields</h3>
-                            <a class="btn btn-danger btn-sm float-right" href="javascript:void(0)"
-                                onclick="deleteField()">
-                                <i class="fas fa-trash-alt"></i>
-                            </a>
                             <a class="btn btn-primary btn-sm float-right mr-1" href="{{ route('fields.create') }}"
                                 id="deleteAllSelectedRecords">
                                 <i class="fa fa-plus"></i>
@@ -45,6 +41,7 @@ Fields
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
+                                        <th scope="col">#</th>
                                         <th scope="col">Field Name</th>
                                         <th scope="col">Sort</th>
                                         <th scope="col">Action</th>
@@ -54,6 +51,7 @@ Fields
                                     @if ($fields !== null)
                                     @foreach ($fields as $field)
                                     <tr id="ids{{ $field->id }}">
+                                        <td>{{ $forms->firstItem()+$loop->index }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ ($field->name !== null)? $field->name : 'N/A' }}</td>
                                         <td style="text-align: center; vertical-align: middle;">

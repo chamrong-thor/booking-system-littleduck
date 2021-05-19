@@ -70,12 +70,14 @@ Create Field
                                 </div>
                                 <div class="form-group">
                                     <label for="selectForm">Form</label>
-                                    <select name="required" class="form-control" id="selectForm">
-                                        <option selected disabled>Select</option>
+                                    <select name="form_id" class="form-control" id="selectForm">
                                         @if ($forms)
+                                        <option selected disabled>Choose</option>
                                         @foreach ($forms as $form)
                                         <option value="{{ $form->id }}">{{ $form->name }}</option>
                                         @endforeach
+                                        @else
+                                        <option selected disabled>Choose</option>
                                         @endif
                                     </select>
                                 </div>
@@ -109,7 +111,7 @@ Create Field
                                 <div class="form-group">
                                     <label for="selectStatus">Status</label>
                                     <select name="status" class="form-control" id="selectStatus">
-                                        <option selected disabled>Select</option>
+                                        <option selected disabled>Choose</option>
                                         <option value="1">Enable</option>
                                         <option value="0">Disable</option>
                                     </select>

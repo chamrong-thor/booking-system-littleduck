@@ -19,4 +19,9 @@ class Field extends Model
     {
         return $this->belongsTo('App\Model\Type');
     }
+
+    public function optionvalues()
+    {
+        return $this->hasMany('App\Model\Optionvalue');
+    }
 }

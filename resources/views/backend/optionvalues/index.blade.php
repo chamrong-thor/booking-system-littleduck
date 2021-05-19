@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 @section('title')
-Options
+Option Values
 @endsection
 @section('content')
 
@@ -23,6 +23,7 @@ Options
                             <table id="optionvalueTable" class="table table-bordered">
                                 <thead>
                                     <tr>
+                                        <th scope="col">#</th>
                                         <th scope="col">Name</th>
                                         <th scope="col">Image</th>
                                         <th scope="col">Description</th>
@@ -33,6 +34,7 @@ Options
                                     @if ($optionvalues !== null)
                                     @foreach ($optionvalues as $optionvalue)
                                     <tr id="sid{{ $optionvalue->id }}">
+                                        <td>{{ $forms->firstItem()+$loop->index }}</td>
                                         <td style="vertical-align: middle; width: 120px;">
                                             {{ ($optionvalue->name !== null)? $optionvalue->name : 'N/A' }}
                                         </td>
@@ -94,11 +96,17 @@ Options
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="selectOption">Option:</label>
-                                                    <select class="form-control" name="option_id" id="selectOption">
+                                                    <select class="form-control" name="field_id" id="selectOption">
                                                         <option disabled selected>Choose</option>
-                                                        @if (!empty($options))
-                                                        @foreach ($options as $option)
-                                                        <option value="{{ $option->id }}">{{ $option->name }}</option>
+                                                        @if (!empty($fields))
+                                                        @foreach ($fields as $field)
+
+                                                        @if($field->type->name == "checkbox" || $field->type->name ==
+                                                        "select"
+                                                        || $field->type->name == "radio")
+                                                        <option value="{{ $field->id }}">{{ $field->name }}</option>
+                                                        @endif
+
                                                         @endforeach
                                                         @endif
                                                     </select>

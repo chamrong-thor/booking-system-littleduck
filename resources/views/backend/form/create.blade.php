@@ -54,6 +54,11 @@ Create Form
                                         placeholder="Field Name">
                                 </div>
                                 <div class="form-group">
+                                    <label for="inputDescription">Description</label>
+                                    <textarea name="description" id="inputDescription" cols="30" rows="5"
+                                        class="form-control" placeholder="description"></textarea>
+                                </div>
+                                <div class="form-group">
                                     <label for="selectBooking">Booking</label>
                                     <select name="booking_id" class="form-control" id="selectBooking">
                                         <option selected disabled>Select</option>

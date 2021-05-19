@@ -17,6 +17,7 @@ class CreateFormsTable extends Migration
             $table->id();
             $table->integer('booking_id')->nullable();
             $table->string('name')->nullable();
+            $table->text('description')->nullable();
             $table->boolean('status')->nullable();
             $table->timestamps();
         });

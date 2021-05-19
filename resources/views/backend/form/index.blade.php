@@ -41,6 +41,7 @@ Forms
                             <table class="table table-bordered">
                                 <thead>
                                     <tr>
+                                        <th scope="col">#</th>
                                         <th scope="col">Form Name</th>
                                         <th scope="col">Status</th>
                                         <th scope="col">Action</th>
@@ -50,6 +51,7 @@ Forms
                                     @if ($forms !== null)
                                     @foreach ($forms as $form)
                                     <tr id="sid{{ $form->id }}">
+                                        <td>{{ $forms->firstItem()+$loop->index }}</td>
                                         <td style="vertical-align: middle;">
                                             {{ ($form->name !== null)? $form->name : 'N/A' }}
                                         </td>

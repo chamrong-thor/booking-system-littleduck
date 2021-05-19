@@ -101,18 +101,6 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="{{ route('options.create') }}" class="nav-link">
-                                <i class="fas fa-angle-double-right nav-icon"></i>
-                                <p>Add Option</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ route('options.index') }}" class="nav-link">
-                                <i class="fas fa-angle-double-right nav-icon"></i>
-                                <p>Options</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a href="{{ route('optionvalues.index') }}" class="nav-link">
                                 <i class="fas fa-angle-double-right nav-icon"></i>
                                 <p>Option Value</p>
@@ -126,7 +114,7 @@
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-globe"></i>
                         <p>
-                            Languages
+                            Report
                         </p>
                     </a>
                 </li>

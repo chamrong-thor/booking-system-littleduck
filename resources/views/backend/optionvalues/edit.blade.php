@@ -1,6 +1,6 @@
 @extends('layouts.backend')
 @section('title')
-Options
+Option Values
 @endsection
 @section('content')
 
@@ -15,13 +15,14 @@ Options
                     <div class="card">
                         <div class="card-header">
                             <h3 class="card-title"><i class="fas fa-list"></i> Options</h3>
-                            {{-- <button class="btn btn-primary btn-sm float-right mr-1" button type="button"
-                                data-toggle="modal" data-target="#CreateValueModal"><i class="fa fa-plus"></i></button> --}}
+                            <button type="button" class="btn btn-sm btn-primary float-right"
+                                onclick="window.history.back()">
+                                <i class="fas fa-reply"></i>
+                            </button>
                         </div>
                         <!-- /.card-header -->
                         <div class="card-body">
 
-                            <!-- Modal -->
                             {{-- form-Update --}}
                             <form action="{{ route('optionvalues.update', $optionValue->id) }}" method="POST">
                                 @csrf
@@ -42,14 +43,20 @@ Options
                                         value="{{ $optionValue->sort }}">
                                 </div>
                                 <div class="form-group">
-                                    <label for="selectOption">Option:</label>
-                                    <select class="form-control" name="option_id" id="selectOption">
-                                        <option disabled selected>Choose</option>
-                                        @if (!empty($options))
-                                        @foreach ($options as $option)
-                                        <option value="{{ $option->id }}"
-                                            {{ $option->id == $optionValue->id? 'selected' : '' }}>
-                                            {{ $option->name }}</option>
+                                    <label for="selectField">Field:</label>
+                                    <select class="form-control" name="field_id" id="selectField">
+                                        @if ($fields != null && $optionValue->field->name != null)
+                                        {{-- <option value="">{{ $optionValue->field->name }}</option> --}}
+                                        <option disabled>Choose</option>
+                                        @foreach ($fields as $field)
+                                        @if($field->type->name == "checkbox" || $field->type->name ==
+                                        "select"
+                                        || $field->type->name == "radio")
+                                        <option value="{{ $field->id }}"
+                                            {{ $field->name == $optionValue->field->name ? 'selected' : ''}}>
+                                            {{ $field->name }}
+                                        </option>
+                                        @endif
                                         @endforeach
                                         @endif
                                     </select>
