@@ -43,17 +43,20 @@ Fields
                                     <tr>
                                         <th scope="col">#</th>
                                         <th scope="col">Field Name</th>
-                                        <th scope="col">Sort</th>
-                                        <th scope="col">Action</th>
+                                        <th style="text-align: center" scope="col">Field Type</th>
+                                        <th style="text-align: center" scope="col">Sort</th>
+                                        <th style="text-align: center" scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     @if ($fields !== null)
                                     @foreach ($fields as $field)
                                     <tr id="ids{{ $field->id }}">
-                                        <td>{{ $forms->firstItem()+$loop->index }}</td>
+                                        <td style="width: 5px;">{{ $fields->firstItem()+$loop->index }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ ($field->name !== null)? $field->name : 'N/A' }}</td>
+                                        <td style="text-align: center; vertical-align: middle;">
+                                            {{ ($field->type->name !== null)? $field->type->name : 'N/A' }}</td>
                                         <td style="text-align: center; vertical-align: middle;">
                                             {{ ($field->sort !== null)? $field->sort : 'N/A' }}</td>
                                         <td style="text-align: center; vertical-align: middle; width: 100px">

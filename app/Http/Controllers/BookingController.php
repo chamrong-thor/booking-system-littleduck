@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Model\Booking;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 
 class BookingController extends Controller
 {
@@ -13,7 +15,8 @@ class BookingController extends Controller
      */
     public function index()
     {
-        //
+        $bookings = Booking::paginate(10);
+        return view('backend.booking.index', compact('bookings'));
     }
 
     /**
@@ -23,7 +26,10 @@ class BookingController extends Controller
      */
     public function create()
     {
-        //
+        $date_now = Carbon::now()->format('Y-m-d');
+        $date_now_1 = Carbon::now()->addDays(1)->format('Y-m-d');
+
+        return view('backend.booking.create', compact('date_now', 'date_now_1'));
     }
 
     /**
@@ -34,7 +40,10 @@ class BookingController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $datas = $request->all();
+        Booking::create($datas);
+
+        return redirect()->route('bookings.index')->with('success', 'Booking created successfully');
     }
 
     /**
@@ -56,7 +65,9 @@ class BookingController extends Controller
      */
     public function edit($id)
     {
-        //
+        $booking = Booking::findOrFail($id);
+
+        return view('backend.booking.edit', compact('booking'));
     }
 
     /**
@@ -68,7 +79,11 @@ class BookingController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $data = $request->all();
+        $booking = Booking::find($id);
+        $booking->update($data);
+
+        return redirect()->route('bookings.index')->with('success', 'Booking updated successfully');
     }
 
     /**
@@ -79,6 +94,9 @@ class BookingController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $booking = Booking::find($id);
+
+        $booking->delete();
+        return response()->json(['success' => 'Record has been deleted!']);
     }
 }

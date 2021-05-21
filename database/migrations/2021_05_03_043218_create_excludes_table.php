@@ -15,7 +15,7 @@ class CreateExcludesTable extends Migration
     {
         Schema::create('excludes', function (Blueprint $table) {
             $table->id();
-            $table->integer('booking_id');
+            $table->integer('booking_id')->nullable();
             $table->string('name')->nullable();
             $table->timestamps();
         });

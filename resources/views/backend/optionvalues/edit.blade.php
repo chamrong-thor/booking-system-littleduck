@@ -45,17 +45,19 @@ Option Values
                                 <div class="form-group">
                                     <label for="selectField">Field:</label>
                                     <select class="form-control" name="field_id" id="selectField">
-                                        @if ($fields != null && $optionValue->field->name != null)
-                                        {{-- <option value="">{{ $optionValue->field->name }}</option> --}}
-                                        <option disabled>Choose</option>
+                                        <option disabled selected>Choose</option>
+                                        @if (!empty($fields))
                                         @foreach ($fields as $field)
+                                        @if (!empty($field->type->name) && !empty($optionValue->field->type->name))
+
                                         @if($field->type->name == "checkbox" || $field->type->name ==
                                         "select"
                                         || $field->type->name == "radio")
                                         <option value="{{ $field->id }}"
-                                            {{ $field->name == $optionValue->field->name ? 'selected' : ''}}>
-                                            {{ $field->name }}
-                                        </option>
+                                            {{ $optionValue->field->type->name == $field->type->name? 'selected' : '' }}>
+                                            {{ $field->name }}</option>
+                                        @endif
+
                                         @endif
                                         @endforeach
                                         @endif

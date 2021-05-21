@@ -34,7 +34,7 @@ Option Values
                                     @if ($optionvalues !== null)
                                     @foreach ($optionvalues as $optionvalue)
                                     <tr id="sid{{ $optionvalue->id }}">
-                                        <td>{{ $forms->firstItem()+$loop->index }}</td>
+                                        <td>{{ $optionvalues->firstItem()+$loop->index }}</td>
                                         <td style="vertical-align: middle; width: 120px;">
                                             {{ ($optionvalue->name !== null)? $optionvalue->name : 'N/A' }}
                                         </td>
@@ -95,11 +95,12 @@ Option Values
                                                         class="form-control">
                                                 </div>
                                                 <div class="form-group">
-                                                    <label for="selectOption">Option:</label>
+                                                    <label for="selectOption">Field:</label>
                                                     <select class="form-control" name="field_id" id="selectOption">
                                                         <option disabled selected>Choose</option>
                                                         @if (!empty($fields))
                                                         @foreach ($fields as $field)
+                                                        @if (!empty($field->type->name))
 
                                                         @if($field->type->name == "checkbox" || $field->type->name ==
                                                         "select"
@@ -107,6 +108,7 @@ Option Values
                                                         <option value="{{ $field->id }}">{{ $field->name }}</option>
                                                         @endif
 
+                                                        @endif
                                                         @endforeach
                                                         @endif
                                                     </select>

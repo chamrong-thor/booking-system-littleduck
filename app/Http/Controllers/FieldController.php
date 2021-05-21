@@ -17,7 +17,7 @@ class FieldController extends Controller
      */
     public function index()
     {
-        $fields = Field::paginate(5);
+        $fields = Field::paginate(10);
         return view('backend.field.index', compact('fields'));
     }
 
@@ -43,7 +43,7 @@ class FieldController extends Controller
     {
         $field = $request->all();
         Field::create($field);
-        return redirect()->route('fields.index');
+        return redirect()->route('fields.index')->with('success', 'Field created successfully');
     }
 
     /**
@@ -85,7 +85,7 @@ class FieldController extends Controller
         $input = $request->all();
         $field->update($input);
 
-        return redirect()->route('fields.index');
+        return redirect()->route('fields.index')->with('success', 'Field updated successfully');
     }
 
     /**

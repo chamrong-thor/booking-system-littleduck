@@ -36,6 +36,8 @@
     <link rel="stylesheet" href="{{ asset('backends/plugins/summernote/summernote-bs4.min.css') }}">
     <!-- file manager-->
     <link rel="stylesheet" href="{{ asset('vendor/file-manager/css/file-manager.css') }}">
+    <!-- toastr-->
+    <link rel="stylesheet" href="{{ asset('backends/plugins/toastr/toastr.css') }}">
 
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -99,7 +101,14 @@
     <script src="{{ asset('backends/dist/js/demo.js') }}"></script>
     <!-- filemanger -->
     <script src="{{ asset('vendor/file-manager/js/file-manager.js') }}"></script>
+    <!-- toastr -->
+    <script src="{{ asset('backends/dist/js/toastr.min.js') }}"></script>
     @yield('script')
+    @if (Session::has('success'))
+    <script>
+        toastr.success("{!! Session::get('success') !!}");
+    </script>
+    @endif
 </body>
 
 </html>

@@ -16,7 +16,7 @@ class OptionvalueController extends Controller
      */
     public function index()
     {
-        $optionvalues = Optionvalue::paginate(5);
+        $optionvalues = Optionvalue::paginate(10);
         $fields = Field::all();
 
         return view('backend.optionvalues.index', compact('optionvalues', 'fields'));
@@ -43,7 +43,7 @@ class OptionvalueController extends Controller
         $input = $request->all();
         Optionvalue::create($input);
 
-        return back();
+        return back()->with('success', 'Option created successfully');
     }
 
     /**
@@ -87,7 +87,7 @@ class OptionvalueController extends Controller
         $optionvalue = Optionvalue::find($id);
         $optionvalue->update($input);
 
-        return redirect()->route('optionvalues.index');
+        return redirect()->route('optionvalues.index')->with('success', 'Option updated successfully');
 
     }
 

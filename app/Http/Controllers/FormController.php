@@ -15,7 +15,7 @@ class FormController extends Controller
      */
     public function index()
     {
-        $forms = Form::paginate(5);
+        $forms = Form::paginate(10);
         return view('backend.form.index', compact('forms'));
     }
 
@@ -40,7 +40,7 @@ class FormController extends Controller
     {
         $form = $request->all();
         Form::create($form);
-        return redirect()->route('forms.index');
+        return redirect()->route('forms.index')->with('success', 'Form updated successfully');
     }
 
     /**
@@ -79,7 +79,7 @@ class FormController extends Controller
         $form = Form::find($id);
         $data = $request->all();
         $form->update($data);
-        return redirect()->route('forms.index')->with('success', 'Form created successfully');
+        return redirect()->route('forms.index')->with('success', 'Form updated successfully');
     }
 
     /**

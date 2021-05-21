@@ -25,8 +25,9 @@ Create Booking
     </section>
 
     <!-- Main content -->
-    <form action="{{ route('bookings.store') }}" method="post">
+    <form action="{{ route('bookings.update', $booking->id) }}" method="POST">
         @csrf
+        @method('PUT')
         <section class="content" style="font-size: 14px">
             <div class="container-fluid">
 
@@ -51,24 +52,24 @@ Create Booking
                                 <div class="form-group">
                                     <label for="inputName">Booking Name</label>
                                     <input type="text" name="name" id="inputName" class="form-control"
-                                        placeholder="Field Name">
+                                        placeholder="Field Name" value="{{ $booking->name }}">
                                 </div>
                                 <div class="form-group">
                                     <label for="inputStartDate">Start Date</label>
                                     <input type="date" name="start_date" class="form-control" id="inputStartDate"
-                                        value="{{ $date_now }}">
+                                        value="{{ $booking->start_date->format('Y-m-d') }}">
                                 </div>
-                                <div class="form-group">
+                                <div class=" form-group">
                                     <label for="inputEndDate">End Date</label>
                                     <input type="date" name="end_date" class="form-control" id="inputEndDate"
-                                        value="{{ $date_now_1 }}" min="{{ $date_now }}">
+                                        value="{{ $booking->end_date->format('Y-m-d') }}">
                                 </div>
-                                <div class="form-group">
+                                <div class=" form-group">
                                     <label for="selectStatus">Status</label>
                                     <select name="status" class="form-control" id="selectStatus">
                                         <option selected disabled>Select</option>
-                                        <option value="1">Enable</option>
-                                        <option value="0">Disable</option>
+                                        <option value="1" {{ $booking->status == 1 ? 'selected' : '' }}>Enable</option>
+                                        <option value="0" {{ $booking->status == 0 ? 'selected' : '' }}>Disable</option>
                                     </select>
                                 </div>
                             </div>
